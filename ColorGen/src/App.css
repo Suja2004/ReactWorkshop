@@ -1,0 +1,173 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background-image: linear-gradient(120deg, #000000b3, #000000e6);
+  overflow: hidden;
+}
+
+.wrapper {
+  width: 800px;
+  height: 100vh;
+  box-sizing: border-box;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.mouse-pointer-tracker {
+  position: absolute;
+  inset: 0;
+  border: 3px solid lime;
+}
+
+/* first column */
+.mouse-pointer-tracker:nth-of-type(3n - 2) {
+  grid-column: 1 / 2;
+}
+
+/* 2nd column */
+.mouse-pointer-tracker:nth-of-type(3n - 1) {
+  grid-column: 2 / 3;
+}
+
+/* last column */
+.mouse-pointer-tracker:nth-of-type(3n) {
+  grid-column: 3 / 4;
+}
+
+/* 1 - 3  */
+.mouse-pointer-tracker:nth-child(n + 1):nth-child(-n + 3) {
+  grid-row: 1 / 2;
+}
+/* 4 - 6  */
+.mouse-pointer-tracker:nth-child(n + 4):nth-child(-n + 6) {
+  grid-row: 2 / 3;
+}
+/* 7 - 9  */
+.mouse-pointer-tracker:nth-child(n + 7):nth-child(-n + 9) {
+  grid-row: 3 / 4;
+}
+
+.container {
+  --perspective: 1000px;
+  --rotationX: 0deg;
+  --rotationY: 0deg;
+  --angle: 8deg;
+
+  grid-column: 1 / -1;
+  grid-row: 1 / -1;
+
+  width: 400px;
+  padding: 1rem;
+  margin: auto;
+  display: grid;
+  place-items: center;
+  font-family: Tahoma;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(60px);
+  border-radius: 0.5rem;
+  color: #fff;
+  box-shadow: 0 5px 15px 5px #383844;
+  transform-style: preserve-3d;
+  transform: perspective(var(--perspective)) rotateX(var(--rotationX))
+    rotateY(var(--rotationY));
+  transition: transform 0.35s ease;
+}
+
+.mouse-pointer-tracker:nth-child(1):hover ~ .container {
+  --rotationX: var(--angle);
+  --rotationY: calc(var(--angle) * -1);
+}
+.mouse-pointer-tracker:nth-child(2):hover ~ .container {
+  --rotationX: var(--angle);
+}
+.mouse-pointer-tracker:nth-child(3):hover ~ .container {
+  --rotationX: var(--angle);
+  --rotationY: var(--angle);
+}
+.mouse-pointer-tracker:nth-child(4):hover ~ .container {
+  --rotationY: calc(var(--angle) * -1);
+}
+.mouse-pointer-tracker:nth-child(6):hover ~ .container {
+  --rotationY: var(--angle);
+}
+.mouse-pointer-tracker:nth-child(7):hover ~ .container {
+  --rotationX: calc(var(--angle) * -1);
+  --rotationY: var(--angle);
+}
+.mouse-pointer-tracker:nth-child(8):hover ~ .container {
+  --rotationX: calc(var(--angle) * -1);
+}
+.mouse-pointer-tracker:nth-child(9):hover ~ .container {
+  --rotationX: calc(var(--angle) * -1);
+  --rotationY: var(--angle);
+}
+
+.banner {
+  width: 200px;
+  height: 200px;
+  border-radius: 0.5rem;
+  margin: 2rem;
+}
+
+.container > button {
+  width: 200px;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.1em;
+  transition: all 0.4s linear;
+  background: transparent;
+}
+
+.container > button:hover {
+  background: #000;
+  color: #fff;
+}
+
+.copy {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  font-size: 1.2em;
+  border: 2px solid;
+  margin: 1rem 0;
+  border-radius: 0.3rem;
+}
+
+.copy button {
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+}
+
+.copy img {
+  width: 40px;
+  height: 40px;
+}
+
+.container .popup {
+  position: absolute;
+  padding: 1rem;
+  top: -15%;
+  background-image: linear-gradient(
+    120deg,
+    rgb(255, 255, 255),
+    rgba(0, 110, 255)
+  );
+  background-size: 5px 5px;
+  background-clip: text;
+  color: transparent;
+  font-size: 1.2em;
+  font-weight: 800;
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
