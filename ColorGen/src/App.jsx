@@ -5,6 +5,7 @@ import './App.css';
 const App = () => {
   const [color, setColor] = useState('#33ccff');
   const [copied, setCopied] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
   // Generate
   const generateRandomColor = () => {
@@ -35,15 +36,21 @@ const App = () => {
       <div className="mouse-pointer-tracker"></div>
       <div className="mouse-pointer-tracker"></div>
 
-      <div className='container'>
-        <h2>Dynamic Color Generator</h2>
+      <div className='container' style={{ boxShadow: `0 0 15px ${color}` }}>
+        <h2 style={{ textShadow: `0 0 15px ${color}` }}>Dynamic Color Generator</h2>
 
         <div className='banner' style={{ backgroundColor: `${color}` }} />
 
-        <button onClick={generateRandomColor}>Generate</button>
+        <button onClick={generateRandomColor}
+          style={{ backgroundColor: hovered ? `${color}` : 'transparent' }}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
+          Generate
+        </button>
         <div className='copy'>
           <p>{color}</p>
-          <button onClick={copyToClipboard}>
+          <button onClick={copyToClipboard}  >
             <img src={copy} alt="copy" />
           </button>
         </div>

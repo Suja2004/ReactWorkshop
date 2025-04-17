@@ -74,7 +74,6 @@ body {
   -webkit-backdrop-filter: blur(60px);
   border-radius: 0.5rem;
   color: #fff;
-  box-shadow: 0 5px 15px 5px #383844;
   transform-style: preserve-3d;
   transform: perspective(var(--perspective)) rotateX(var(--rotationX))
     rotateY(var(--rotationY));
@@ -100,7 +99,7 @@ body {
 }
 .mouse-pointer-tracker:nth-child(7):hover ~ .container {
   --rotationX: calc(var(--angle) * -1);
-  --rotationY: var(--angle);
+  --rotationY: calc(var(--angle) * -1);
 }
 .mouse-pointer-tracker:nth-child(8):hover ~ .container {
   --rotationX: calc(var(--angle) * -1);
@@ -124,10 +123,10 @@ body {
   font-size: 1.1em;
   transition: all 0.4s linear;
   background: transparent;
+  color: #fff;
 }
 
 .container > button:hover {
-  background: #000;
   color: #fff;
 }
 
@@ -169,5 +168,15 @@ body {
   color: transparent;
   font-size: 1.2em;
   font-weight: 800;
-  font-family: 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans Unicode", sans-serif;
+  filter: drop-shadow(0 1px 0 #fff);
+}
+
+@media screen and (width<=780px) {
+  .wrapper {
+    width: calc(100% + 50px);
+  }
+  .container {
+    width: auto;
+  }
 }
