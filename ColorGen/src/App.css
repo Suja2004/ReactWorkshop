@@ -56,9 +56,9 @@ body {
 
 .container {
   --perspective: 1000px;
-  --rotationX: 0deg;
-  --rotationY: 0deg;
-  --angle: 8deg;
+  --rotateX: 0;
+  --rotateY: 0;
+  --angle: 20deg;
 
   grid-column: 1 / -1;
   grid-row: 1 / -1;
@@ -74,39 +74,55 @@ body {
   -webkit-backdrop-filter: blur(60px);
   border-radius: 0.5rem;
   color: #fff;
+
+  position: relative;
   transform-style: preserve-3d;
-  transform: perspective(var(--perspective)) rotateX(var(--rotationX))
-    rotateY(var(--rotationY));
-  transition: transform 0.35s ease;
+  transform: perspective(var(--perspective)) rotateX(var(--rotateX))
+    rotateY(var(--rotateY));
+  transition: all 0.4s linear;
+}
+
+.container::after,
+.container::before {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+}
+
+.container::after {
+  inset: -1rem;
+  background: #000;
+  opacity: 0.4;
+  z-index: -100;
 }
 
 .mouse-pointer-tracker:nth-child(1):hover ~ .container {
-  --rotationX: var(--angle);
-  --rotationY: calc(var(--angle) * -1);
+  --rotateX: var(--angle);
+  --rotateY: calc(var(--angle) * -1);
 }
 .mouse-pointer-tracker:nth-child(2):hover ~ .container {
-  --rotationX: var(--angle);
+  --rotateX: var(--angle);
 }
 .mouse-pointer-tracker:nth-child(3):hover ~ .container {
-  --rotationX: var(--angle);
-  --rotationY: var(--angle);
+  --rotateX: var(--angle);
+  --rotateY: var(--angle);
 }
 .mouse-pointer-tracker:nth-child(4):hover ~ .container {
-  --rotationY: calc(var(--angle) * -1);
+  --rotateY: calc(var(--angle) * -1);
 }
 .mouse-pointer-tracker:nth-child(6):hover ~ .container {
-  --rotationY: var(--angle);
+  --rotateY: var(--angle);
 }
 .mouse-pointer-tracker:nth-child(7):hover ~ .container {
-  --rotationX: calc(var(--angle) * -1);
-  --rotationY: calc(var(--angle) * -1);
+  --rotateX: calc(var(--angle) * -1);
+  --rotateY: calc(var(--angle) * -1);
 }
 .mouse-pointer-tracker:nth-child(8):hover ~ .container {
-  --rotationX: calc(var(--angle) * -1);
+  --rotateX: calc(var(--angle) * -1);
 }
 .mouse-pointer-tracker:nth-child(9):hover ~ .container {
-  --rotationX: calc(var(--angle) * -1);
-  --rotationY: var(--angle);
+  --rotateX: calc(var(--angle) * -1);
+  --rotateY: var(--angle);
 }
 
 .banner {
@@ -152,6 +168,13 @@ body {
 .copy img {
   width: 40px;
   height: 40px;
+  transition: all 0.5s ease;
+  filter: saturate(10);
+}
+
+.copy img:hover {
+  scale: 1.1;
+  filter: saturate(10) drop-shadow(0 0 10px currentColor);
 }
 
 .container .popup {
@@ -173,9 +196,15 @@ body {
 }
 
 @media screen and (width<=780px) {
-  .wrapper {
-    width: calc(100% + 50px);
+  body {
+    width: 100%;
+    display: block;
   }
+
+  .wrapper {
+    width: 100vw;
+  }
+
   .container {
     width: auto;
   }

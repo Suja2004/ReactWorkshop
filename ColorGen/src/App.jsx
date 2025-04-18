@@ -51,7 +51,9 @@ const App = () => {
         <div className='copy'>
           <p>{color}</p>
           <button onClick={copyToClipboard}  >
-            <img src={copy} alt="copy" />
+            <img src={copy} alt="copy" style={{ color: hovered ? `${color}` : 'transparent' }}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)} />
           </button>
         </div>
 
