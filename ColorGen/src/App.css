@@ -56,8 +56,8 @@ body {
 
 .container {
   --perspective: 1000px;
-  --rotateX: 0;
-  --rotateY: 0;
+  --rotateX: 0deg;
+  --rotateY: 0deg;
   --angle: 20deg;
 
   grid-column: 1 / -1;
@@ -74,7 +74,6 @@ body {
   -webkit-backdrop-filter: blur(60px);
   border-radius: 0.5rem;
   color: #fff;
-
   position: relative;
   transform-style: preserve-3d;
   transform: perspective(var(--perspective)) rotateX(var(--rotateX))
@@ -86,14 +85,11 @@ body {
 .container::before {
   content: "";
   position: absolute;
-  border-radius: inherit;
-}
-
-.container::after {
   inset: -1rem;
   background: #000;
-  opacity: 0.4;
-  z-index: -100;
+  opacity: 0.2;
+  z-index: -1;
+  border-radius: inherit;
 }
 
 .mouse-pointer-tracker:nth-child(1):hover ~ .container {
